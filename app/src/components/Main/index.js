@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Header from '../../common/Header';
+import Header from '../common/Header';
 import Card from '../Card';
 import ScheduledActivities from '../ScheduledActivities';
 import ActivityHistory from '../ActivityHistory';

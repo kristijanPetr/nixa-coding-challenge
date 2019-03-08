@@ -99,7 +99,10 @@ class CurrentActivity extends Component {
           }}
         >
           <p className="activity-btn"> CURRENT ACTIVITY</p>
-          <div className="activity-logo">
+          <div
+            className="activity-logo"
+            style={{ width: '70px', height: '70px' }}
+          >
             <img src={logo} />
           </div>
           <p
@@ -119,7 +122,7 @@ class CurrentActivity extends Component {
               width: '186px',
               fontSize: '24px',
               fontFamily: 'europa',
-              fontWeight: 'bold',
+              lineHeight: '1.1',
               textAlign: 'center',
               paddingBottom: '20px'
             }}
@@ -142,10 +145,10 @@ const mapStateToProps = state => {
 };
 
 CurrentActivity.propTypes = {
-  name: PropTypes.string.isRequired,
-  desc: PropTypes.string.isRequired,
-  bgImg: PropTypes.string.isRequired,
-  logo: PropTypes.string.isRequired
+  //   name: PropTypes.string.isRequired,
+  //   desc: PropTypes.string.isRequired,
+  //   bgImg: PropTypes.string.isRequired,
+  //   logo: PropTypes.string.isRequired
 };
 
 export default withRouter(

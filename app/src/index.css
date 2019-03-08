@@ -163,6 +163,9 @@ body {
   padding: 2px;
 }
 
+.card-icon img {
+  width: 28px;
+}
 .card-image {
   max-height: 100px;
   overflow: hidden;
@@ -208,4 +211,22 @@ body {
   font-size: 10px;
   letter-spacing: 2px;
   color: #7d8184;
+}
+
+.activity-track {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.activity-circle {
+  width: 60px;
+  min-width: 60px;
+  height: 60px;
+  border: 1px dashed rgba(200, 209, 211, 1);
+  border-radius: 50%;
+  background-color: rgba(240, 243, 244, 1);
+  margin-right: 20px;
 }

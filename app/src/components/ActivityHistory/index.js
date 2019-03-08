@@ -1,17 +1,23 @@
 import React, { Component } from 'react';
+import ActivityTrack from '../common/ActivityTrack';
 
 import './index.css';
 
-class ScheduledActivities extends Component {
+class ActivityHistory extends Component {
   render() {
     return (
       <div>
-        <p className="empty-activity">
-          You haven't tracked any activities yet.
-        </p>
+        {
+          //   <p className="empty-activity">
+          //   You haven't tracked any activities yet.
+          // </p>
+        }
+        <ActivityTrack />
+        <ActivityTrack />
+        <ActivityTrack />
       </div>
     );
   }
 }
 
-export default ScheduledActivities;
+export default ActivityHistory;
