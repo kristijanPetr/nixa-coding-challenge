@@ -1,1 +1,3 @@
-export const LOGGED_USER = "LOGGED_USER";
+export const LOGGED_USER = 'LOGGED_USER';
+export const SELECT_ACTIVITY = 'SELECT_ACTIVITY';
+export const CLEAR_ACTIVITY = 'CLEAR_ACTIVITY';

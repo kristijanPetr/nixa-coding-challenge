@@ -5,7 +5,6 @@ import './index.css';
 
 class ScheduledActivities extends Component {
   render() {
-    console.log('Props act', this.props);
     return (
       <div>
         <p className="empty-activity">

@@ -1,17 +1,71 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Header from '../../common/Header';
-import CardList from '../CardList';
+import Card from '../Card';
 import ScheduledActivities from '../ScheduledActivities';
 import ActivityHistory from '../ActivityHistory';
 
-import { logUser } from '../../actions';
+import { selectActivity } from '../../actions';
 
 import './App.css';
 
+const activities = [
+  {
+    name: 'Surfing',
+    desc: 'OCEAN BEACH',
+    bgImg: require('../../assets/surfing@2x.png'),
+    logo: require('../../assets/icn_surfing.svg')
+  },
+  {
+    name: 'Hiking',
+    desc: 'TORREY PINES',
+    bgImg: require('../../assets/hiking@2x.png'),
+    logo: require('../../assets/icn_hiking.svg')
+  },
+  {
+    name: 'Weights',
+    desc: 'HEAVY WEIGHTS',
+    bgImg: require('../../assets/weights@2x.png'),
+    logo: require('../../assets/icn_weights.svg')
+  },
+  {
+    name: 'Spinning',
+    desc: 'ROUND AND ROUND',
+    bgImg: require('../../assets/spinning@2x.png'),
+    logo: require('../../assets/icn_spin.svg')
+  }
+];
+
 class Main extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
+  _selectActivity = activity => {
+    this.props.selectActivity(activity);
+    this.props.history.push('/activity', {
+      test: '12312'
+    });
+  };
+
+  _renderActivityCards = () => {
+    return activities.map((item, index) => {
+      const { name, desc, bgImg, logo } = item;
+      return (
+        <Card
+          key={index}
+          onClick={() => this._selectActivity(item)}
+          name={name}
+          desc={desc}
+          bgImg={bgImg}
+          logo={logo}
+        />
+      );
+    });
+  };
+
   render() {
-    console.log('Props', this.props);
     return (
       <div className="container">
         <Header />
@@ -22,7 +76,9 @@ class Main extends Component {
               width: '100%'
             }}
           >
-            <CardList />
+            <section className="card-list">
+              {this._renderActivityCards()}
+            </section>
           </div>
           <div className="scheduled-activity">
             <div
@@ -59,5 +115,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { logUser }
+  { selectActivity }
 )(Main);

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import Main from '../components/Main';
+import CurrentActivityPage from '../screens/CurrentActivityPage';
 import About from '../screens/About';
 
 class ReactRouter extends React.Component {
@@ -8,6 +9,7 @@ class ReactRouter extends React.Component {
     return (
       <React.Fragment>
         <Route exact path="/" component={Main} />
+        <Route path="/activity" component={CurrentActivityPage} />
         <Route path="/about" component={About} />
       </React.Fragment>
     );

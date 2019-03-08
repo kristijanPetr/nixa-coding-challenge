@@ -1,0 +1,81 @@
+.container-activity {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  z-index: 2;
+  height: 100vh;
+  color: white;
+  align-items: center;
+}
+
+.header-activity {
+  display: flex;
+  height: 60px;
+  width: 100%;
+  padding-left: 20px;
+  align-items: center;
+}
+
+.activity-logo {
+  background: #fff;
+  width: 45px;
+  height: 45px;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  border-radius: 100%;
+  box-shadow: 0px 10px 15px rgba(27, 28, 32, 0.1);
+  padding: 2px;
+}
+
+.background-img {
+  background-image: url('../../assets/horizon.jpg');
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+  z-index: -1;
+}
+
+.timer-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 190px;
+  height: 190px;
+  background-color: #ffffff47;
+  border-radius: 50%;
+  margin-bottom: 59px;
+  /* filter: blur(10px); */
+}
+
+.timer-container > .timer-minutes {
+  font-size: 72px;
+  font-family: 'rift-soft';
+  font-weight: 100;
+}
+
+.pause-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 60px;
+  background-color: #ffffff47;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.pause-btn {
+  background-color: white;
+  width: 25px;
+  height: 25px;
+}
