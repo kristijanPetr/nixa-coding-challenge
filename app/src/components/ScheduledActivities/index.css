@@ -1,0 +1,31 @@
+.empty-activity {
+  font-family: 'Europa-Light';
+  color: #6e8ca0;
+  font-size: 14px;
+}
+
+.activity-btn-wrapper {
+  background-color: #d97d54;
+  height: 50px;
+  max-width: 295px;
+  color: white;
+  display: flex;
+  cursor: pointer;
+  border-radius: 25px;
+  box-shadow: 0px 10px 15px rgba(27, 28, 32, 0.1);
+  align-items: center;
+  justify-content: center;
+
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+.activity-btn {
+  font-size: 14px;
+  font-family: 'rift-soft';
+  letter-spacing: 1.5px;
+}
+
+.activity-btn-wrapper img {
+  padding-right: 10px;
+}
