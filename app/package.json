@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "axios": "^0.18.0",
+    "lodash": "^4.17.11",
     "moment": "^2.24.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.4",
@@ -28,5 +30,6 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "proxy": "http://localhost:4000"
 }

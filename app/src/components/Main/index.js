@@ -5,7 +5,7 @@ import Card from '../Card';
 import ScheduledActivities from '../ScheduledActivities';
 import ActivityHistory from '../ActivityHistory';
 
-import { selectActivity } from '../../actions';
+import { selectActivity, getHistoryActivities } from '../../actions';
 
 import './App.css';
 
@@ -42,6 +42,10 @@ class Main extends Component {
     this.state = {};
   }
 
+  componentDidMount() {
+    this.props.getHistoryActivities();
+  }
+
   _selectActivity = activity => {
     this.props.selectActivity(activity);
     this.props.history.push('/activity', {
@@ -66,6 +70,7 @@ class Main extends Component {
   };
 
   render() {
+    const { historyActivity } = this.props;
     return (
       <div className="container">
         <Header />
@@ -98,7 +103,7 @@ class Main extends Component {
               }}
             >
               <div className="title">Activity History</div>
-              <ActivityHistory />
+              <ActivityHistory data={historyActivity} />
             </div>
           </div>
         </div>
@@ -109,11 +114,12 @@ class Main extends Component {
 
 const mapStateToProps = state => {
   return {
-    user: state.user
+    user: state.user,
+    historyActivity: state.historyActivity
   };
 };
 
 export default connect(
   mapStateToProps,
-  { selectActivity }
+  { selectActivity, getHistoryActivities }
 )(Main);

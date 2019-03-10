@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import moment from 'moment';
 
-import { clearActivity } from '../../actions';
+import { clearActivity, addHistoryActivity } from '../../actions';
 
 import Timer from '../Timer';
 
@@ -36,7 +37,7 @@ class CurrentActivity extends Component {
   };
 
   componentWillUnmount() {
-    this._onPressPause();
+    clearInterval(this.timer);
   }
 
   secondsToTime(secs) {
@@ -78,7 +79,25 @@ class CurrentActivity extends Component {
 
   _onPressPause = () => {
     clearInterval(this.timer);
+    this._saveActivity();
     this._goBack();
+  };
+
+  _saveActivity = () => {
+    let currDate = new Date();
+    let dateFormat = moment(currDate, 'YYYY/MM/DD');
+
+    let fullDate = dateFormat.format('MM/DD/YYYY');
+    let time = dateFormat.format('HH:mm');
+
+    const { m, s } = this.state.time;
+    this.props.addHistoryActivity({
+      ...this.props.activity,
+      date: fullDate,
+      time,
+      trackedTime: `${m}:${s}`,
+      timestamp: currDate.getTime()
+    });
   };
 
   render() {
@@ -154,6 +173,6 @@ CurrentActivity.propTypes = {
 export default withRouter(
   connect(
     mapStateToProps,
-    { clearActivity }
+    { clearActivity, addHistoryActivity }
   )(CurrentActivity)
 );
