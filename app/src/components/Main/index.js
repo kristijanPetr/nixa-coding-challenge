@@ -48,9 +48,7 @@ class Main extends Component {
 
   _selectActivity = activity => {
     this.props.selectActivity(activity);
-    this.props.history.push('/activity', {
-      test: '12312'
-    });
+    this.props.history.push('/activity', {});
   };
 
   _renderActivityCards = () => {

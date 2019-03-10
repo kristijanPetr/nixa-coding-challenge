@@ -54,6 +54,17 @@
       "trackedTime": "0:3",
       "timestamp": 1552228173405,
       "id": 5
+    },
+    {
+      "name": "Hiking",
+      "desc": "TORREY PINES",
+      "bgImg": "/static/media/hiking@2x.cc9e518b.png",
+      "logo": "/static/media/icn_hiking.fa259032.svg",
+      "date": "03/10/2019",
+      "time": "18:15",
+      "trackedTime": "0:3",
+      "timestamp": 1552238132188,
+      "id": 6
     }
   ],
   "scheduled": [],

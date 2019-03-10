@@ -11,14 +11,12 @@ class ScheduledActivities extends Component {
           You don't have any activities scheduled yet.
         </p>
 
-        <div className="activity-btn-wrapper">
+        <div
+          className="activity-btn-wrapper"
+          onClick={() => this.props.history.push('/schedule', {})}
+        >
           <img src={icn_plus} />
-          <div
-            className="activity-btn"
-            onClick={() => this.props.history.push('/about')}
-          >
-            SCHEDULE ACTIVITY
-          </div>
+          <div className="activity-btn">SCHEDULE ACTIVITY</div>
         </div>
       </div>
     );

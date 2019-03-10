@@ -2,7 +2,7 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 import Main from '../components/Main';
 import CurrentActivityPage from '../screens/CurrentActivityPage';
-import About from '../screens/About';
+import ScheduleActivityPage from '../screens/ScheduleActivityPage';
 
 class ReactRouter extends React.Component {
   render() {
@@ -10,7 +10,7 @@ class ReactRouter extends React.Component {
       <React.Fragment>
         <Route exact path="/" component={Main} />
         <Route path="/activity" component={CurrentActivityPage} />
-        <Route path="/about" component={About} />
+        <Route path="/schedule" component={ScheduleActivityPage} />
       </React.Fragment>
     );
   }

@@ -107,7 +107,10 @@ class CurrentActivity extends Component {
       <div className="container-activity">
         <div className="background-img" />
         <div className="header-activity" onClick={this._goBack}>
-          back
+          <ion-icon
+            name="ios-arrow-back"
+            style={{ color: 'white', fontSize: 29 }}
+          />
         </div>
 
         <div
