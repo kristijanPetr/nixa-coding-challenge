@@ -5,17 +5,33 @@ import PropTypes from 'prop-types';
 class ActivityTrack extends Component {
   _renderHistoryCircles = () => {
     const { items = [] } = this.props;
-    const track = [0, 0, 0, 0, 0, 0, 0];
+    const track = items.length > 7 ? items : [0, 0, 0, 0, 0, 0, 0];
+
     return track.map((indice, index) => {
       if (items[index]) {
-        console.log('Indixe', items[index]);
+        // console.log('Indixe', items[index]);
         return (
           <div
             key={index}
-            className="activity-logo"
-            style={{ width: '60px', height: '60px', minWidth: '60px' }}
+            className="flex-center"
+            style={{ marginRight: '20px' }}
           >
-            <img src={items[index].logo} />
+            <div
+              className="activity-logo"
+              style={{ width: '60px', height: '60px', minWidth: '60px' }}
+            >
+              <img src={items[index].logo} />
+            </div>
+            <p
+              style={{
+                marginTop: '9px',
+                fontFamily: 'europa',
+                color: '#8D8C8C',
+                fontSize: '12px'
+              }}
+            >
+              {items[index].time ? items[index].time : items[index].startTime}
+            </p>
           </div>
         );
       }
@@ -25,7 +41,7 @@ class ActivityTrack extends Component {
 
   render() {
     console.log('props', this.props.items);
-    const { month, items } = this.props;
+    const { month } = this.props;
     return (
       <div className="activity-track-container">
         <p className="activity-btn">{`${moment(month).format('MMMM')} ${moment(

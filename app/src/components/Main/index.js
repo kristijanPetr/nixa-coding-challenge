@@ -5,10 +5,14 @@ import Card from '../Card';
 import ScheduledActivities from '../ScheduledActivities';
 import ActivityHistory from '../ActivityHistory';
 
-import { selectActivity, getHistoryActivities } from '../../actions';
+import {
+  selectActivity,
+  getHistoryActivities,
+  getScheduledActivitiesForDate
+} from '../../actions';
 
 import './App.css';
-
+const { get7DaysRange } = require('../../utils/calculateTimeSlots');
 const activities = [
   {
     name: 'Surfing',
@@ -44,6 +48,9 @@ class Main extends Component {
 
   componentDidMount() {
     this.props.getHistoryActivities();
+    let dates = get7DaysRange();
+
+    this.props.getScheduledActivitiesForDate(dates[0], dates[dates.length - 1]);
   }
 
   _selectActivity = activity => {
@@ -68,7 +75,7 @@ class Main extends Component {
   };
 
   render() {
-    const { historyActivity } = this.props;
+    const { historyActivity, scheduledActivity } = this.props;
     return (
       <div className="container">
         <Header />
@@ -90,7 +97,7 @@ class Main extends Component {
               }}
             >
               <div className="title">Scheduled Activities</div>
-              <ScheduledActivities />
+              <ScheduledActivities data={scheduledActivity} />
             </div>
           </div>
 
@@ -113,11 +120,12 @@ class Main extends Component {
 const mapStateToProps = state => {
   return {
     user: state.user,
-    historyActivity: state.historyActivity
+    historyActivity: state.historyActivity,
+    scheduledActivity: state.scheduledActivity
   };
 };
 
 export default connect(
   mapStateToProps,
-  { selectActivity, getHistoryActivities }
+  { selectActivity, getHistoryActivities, getScheduledActivitiesForDate }
 )(Main);

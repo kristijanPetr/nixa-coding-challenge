@@ -5,7 +5,10 @@ import {
   CLEAR_ACTIVITY,
   ADD_ACTIVITY_HISTORY_SUCCESS,
   ADD_ACTIVITY_HISTORY_FAILURE,
-  GET_ACTIVITY_HISTORY
+  GET_ACTIVITY_HISTORY,
+  GET_ACTIVITY_SCHEDULED,
+  ADD_ACTIVITY_SCHEDULED_SUCCESS,
+  ADD_ACTIVITY_SCHEDULED_FAILURE
 } from '../constants';
 
 export function selectActivity(activity) {
@@ -70,6 +73,62 @@ export function addHistoryActivity(activity) {
       .catch(err => {
         return dispatch({
           type: ADD_ACTIVITY_HISTORY_FAILURE
+        });
+      });
+  };
+}
+
+export function getScheduledActivitiesForDate(beginTimestamp, endTimeStamp) {
+  return dispatch => {
+    axios
+      .get(
+        `${
+          API_ENDPOINTS.scheduledActivity
+        }?_sort=timestamp&_order=desc&timestamp_gte=${beginTimestamp}&timestamp_lte=${endTimeStamp}`
+      )
+      .then(resp => {
+        if (resp.status === 200) {
+          return dispatch({
+            type: GET_ACTIVITY_SCHEDULED,
+            payload: resp.data
+          });
+        }
+
+        return dispatch({
+          type: GET_ACTIVITY_SCHEDULED,
+          payload: []
+        });
+      })
+      .catch(err => {
+        return dispatch({
+          type: GET_ACTIVITY_SCHEDULED,
+          payload: []
+        });
+      });
+  };
+}
+
+export function addScheduledActivity(activity) {
+  return dispatch => {
+    axios
+      .post(API_ENDPOINTS.scheduledActivity, {
+        ...activity
+      })
+      .then(resp => {
+        console.log('resp', resp);
+        if (resp.status === 201) {
+          return dispatch({
+            type: ADD_ACTIVITY_SCHEDULED_SUCCESS,
+            payload: resp.data
+          });
+        }
+        return dispatch({
+          type: ADD_ACTIVITY_SCHEDULED_FAILURE
+        });
+      })
+      .catch(err => {
+        return dispatch({
+          type: ADD_ACTIVITY_SCHEDULED_FAILURE
         });
       });
   };

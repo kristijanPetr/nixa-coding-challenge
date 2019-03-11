@@ -32,14 +32,12 @@
 }
 
 .background-img {
-  background-image: url('../../assets/horizon.jpg');
+  background-image: url('../../assets/bg_tracking.png');
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-  filter: blur(8px);
-  -webkit-filter: blur(8px);
   z-index: -1;
 }
 

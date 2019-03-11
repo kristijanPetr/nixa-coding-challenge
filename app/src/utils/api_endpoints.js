@@ -1,5 +1,6 @@
 const API_ENDPOINTS = {
-  historyActivity: '/history'
+  historyActivity: '/history',
+  scheduledActivity: '/scheduled'
 };
 
 module.exports = {

@@ -6,6 +6,10 @@ import ActivityTrack from '../common/ActivityTrack';
 import './index.css';
 
 class ActivityHistory extends Component {
+  constructor(props) {
+    super(props);
+  }
+
   _renderTracks = () => {
     const { data } = this.props;
     let grouped = _.groupBy(_.sortBy(data, 'date'), 'date');

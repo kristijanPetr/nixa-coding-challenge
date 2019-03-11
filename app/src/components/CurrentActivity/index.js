@@ -13,10 +13,13 @@ import './index.css';
 class CurrentActivity extends Component {
   constructor(props) {
     super(props);
-    this.state = { time: {}, seconds: 0 };
+    this.state = {
+      seconds: 11200,
+      time: new moment().format('HH:mm'),
+      startTime: ''
+    };
     this.timer = 0;
     this.startTimer = this.startTimer.bind(this);
-    this.countDown = this.countDown.bind(this);
   }
 
   componentWillMount() {
@@ -25,9 +28,24 @@ class CurrentActivity extends Component {
     }
   }
 
+  momentCounter = () => {
+    let endTime = new moment();
+    let duration = moment.duration(endTime.diff(this.state.startTime));
+    this.setState({
+      time: `${duration.asMinutes().toFixed(0)}:${duration
+        .asSeconds()
+        .toFixed(0)}`
+    });
+  };
+
   componentDidMount() {
-    let timeLeftVar = this.secondsToTime(this.state.seconds);
-    this.setState({ time: timeLeftVar });
+    this.setState(
+      {
+        startTime: new moment()
+      },
+      () => this.momentCounter()
+    );
+
     this.startTimer();
   }
 
@@ -40,36 +58,10 @@ class CurrentActivity extends Component {
     clearInterval(this.timer);
   }
 
-  secondsToTime(secs) {
-    let hours = Math.floor(secs / (60 * 60));
-
-    let divisor_for_minutes = secs % (60 * 60);
-    let minutes = Math.floor(divisor_for_minutes / 60);
-
-    let divisor_for_seconds = divisor_for_minutes % 60;
-    let seconds = Math.ceil(divisor_for_seconds);
-
-    let obj = {
-      h: hours,
-      m: minutes,
-      s: seconds
-    };
-    return obj;
-  }
-
   startTimer() {
     if (this.timer === 0) {
-      this.timer = setInterval(this.countDown, 1000);
+      this.timer = setInterval(this.momentCounter, 1000);
     }
-  }
-
-  countDown() {
-    // Remove one second, set state so a re-render happens.
-    let seconds = this.state.seconds + 1;
-    this.setState({
-      time: this.secondsToTime(seconds),
-      seconds: seconds
-    });
   }
 
   _goBack = () => {
@@ -86,22 +78,17 @@ class CurrentActivity extends Component {
   _saveActivity = () => {
     let currDate = new Date();
     let dateFormat = moment(currDate, 'YYYY/MM/DD');
-
     let fullDate = dateFormat.format('MM/DD/YYYY');
-    let time = dateFormat.format('HH:mm');
-
-    const { m, s } = this.state.time;
     this.props.addHistoryActivity({
       ...this.props.activity,
       date: fullDate,
-      time,
-      trackedTime: `${m}:${s}`,
+      time: this.state.startTime.format('HH:mm'),
+      trackedTime: this.state.time,
       timestamp: currDate.getTime()
     });
   };
 
   render() {
-    // console.log('This props', this.props);
     const { logo, name } = this.props.activity || {};
     return (
       <div className="container-activity">
