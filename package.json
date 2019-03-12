@@ -4,7 +4,7 @@
   "description": "Coding Challenge Nixa.io",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "cd ./app && npm run test",
     "init": "yarn install && cd app && yarn install",
     "start": "node server.js",
     "client": "cd app && yarn start",
