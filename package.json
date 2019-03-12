@@ -9,7 +9,7 @@
     "client": "cd app && yarn start",
     "server": "nodemon server.js",
     "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
-    "build-prod": "rm -rf build/ && mkdir build/ && cd ./app/ && npm run build && cp -r build/ ../build/"
+    "build-prod": "rm -rf public/ && mkdir public/ && cd ./app/ && npm run build && cp -r build/ ../public/"
   },
   "keywords": [],
   "author": "",

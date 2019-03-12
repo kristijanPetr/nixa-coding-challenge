@@ -75,7 +75,7 @@ class Main extends Component {
   };
 
   render() {
-    const { historyActivity, scheduledActivity } = this.props;
+    const { historyActivity, scheduledActivities } = this.props;
     return (
       <div className="container">
         <Header />
@@ -97,7 +97,7 @@ class Main extends Component {
               }}
             >
               <div className="title">Scheduled Activities</div>
-              <ScheduledActivities data={scheduledActivity} />
+              <ScheduledActivities data={scheduledActivities} />
             </div>
           </div>
 
@@ -121,7 +121,7 @@ const mapStateToProps = state => {
   return {
     user: state.user,
     historyActivity: state.historyActivity,
-    scheduledActivity: state.scheduledActivity
+    scheduledActivities: state.scheduledActivity
   };
 };
 

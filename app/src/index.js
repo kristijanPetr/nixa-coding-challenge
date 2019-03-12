@@ -8,7 +8,7 @@ import ReactRouter from './router';
 import * as serviceWorker from './serviceWorker';
 
 const store = configureStore();
-
+console.warn = () => {};
 ReactDOM.render(
   <Provider store={store}>
     <Router>

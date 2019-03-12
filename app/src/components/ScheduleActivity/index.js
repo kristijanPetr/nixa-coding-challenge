@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import moment from 'moment';
+import _ from 'lodash';
 
 import {
   addScheduledActivity,
@@ -10,7 +11,10 @@ import {
 } from '../../actions';
 import './index.css';
 import './dropdown.css';
-const { get7DaysRange } = require('../../utils/calculateTimeSlots');
+const {
+  get7DaysRange,
+  findFreeSpots
+} = require('../../utils/calculateTimeSlots');
 
 const activities = [
   {
@@ -39,7 +43,7 @@ class ScheduleActivity extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      timeActivityValue: false,
+      timeActivityValue: 15,
       dateActivityValue: false,
       activityPicked: false
     };
@@ -118,11 +122,29 @@ class ScheduleActivity extends Component {
     return false;
   };
 
-  _renderTimeSlots = () => {};
+  _renderTimeSlots = () => {
+    let allSpots = [];
+    let dateGrouped = _.groupBy(this.props.scheduledActivities, 'date');
+    Object.keys(dateGrouped).map(key => {
+      let spots = findFreeSpots(dateGrouped[key], this.state.timeActivityValue);
+      // console.log('Spots', spots);
+      console.log(moment(key).format('ddd DD MMM'));
+
+      spots.map(spot => {
+        allSpots.push(`${moment(key).format('ddd DD MMM')} ${spot}`);
+      });
+    });
+    console.log('All spots', allSpots);
+    return allSpots.map((item, index) => {
+      return (
+        <option key={index} value="1">
+          {item}
+        </option>
+      );
+    });
+  };
 
   render() {
-    // console.log('This props', this.props);
-    const { logo, name } = this.props.activity || {};
     return (
       <div className="container-sch-activity">
         <div className="header-activity" onClick={this._goBack}>
@@ -175,9 +197,7 @@ class ScheduleActivity extends Component {
               value={this.state.dateActivityValue}
             >
               <option>Pick a date & time or find a free slot</option>
-              <option value="1">Pure CSS</option>
-              <option value="2">No JS</option>
-              <option value="3">Nice!</option>
+
               {this._renderTimeSlots()}
             </select>
           </div>
@@ -202,7 +222,8 @@ class ScheduleActivity extends Component {
 
 const mapStateToProps = state => {
   return {
-    activity: state.activity
+    activity: state.activity,
+    scheduledActivities: state.scheduledActivity
   };
 };
 

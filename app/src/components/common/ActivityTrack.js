@@ -9,7 +9,6 @@ class ActivityTrack extends Component {
 
     return track.map((indice, index) => {
       if (items[index]) {
-        // console.log('Indixe', items[index]);
         return (
           <div
             key={index}
@@ -40,15 +39,16 @@ class ActivityTrack extends Component {
   };
 
   render() {
-    console.log('props', this.props.items);
-    const { month } = this.props;
+    const { month, items = [] } = this.props;
+
+    let timestamp = items.length > 0 ? items[0].timestamp : month;
     return (
       <div className="activity-track-container">
-        <p className="activity-btn">{`${moment(month).format('MMMM')} ${moment(
-          month
-        ).format('DD')}`}</p>
+        <p className="activity-btn">{`${moment(timestamp).format(
+          'MMMM'
+        )} ${moment(timestamp).format('DD')}`}</p>
         <p className="title" style={{ margin: 0 }}>
-          {moment(month).format('dddd')}
+          {moment(timestamp).format('dddd')}
         </p>
         <div className="card-list activity-track">
           {this._renderHistoryCircles()}

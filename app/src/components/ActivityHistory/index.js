@@ -21,7 +21,6 @@ class ActivityHistory extends Component {
 
   render() {
     const { data } = this.props;
-    console.log('group');
     if (!data.length) {
       return (
         <div>

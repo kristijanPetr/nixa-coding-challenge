@@ -30,27 +30,27 @@ function isBefore(start, end) {
   return moment(startTime).isSameOrBefore(endTime);
 }
 
-export const findFreeSpots = duration => {
-  if (scheduled.length === 0) {
+export const findFreeSpots = (scheduledActivities, duration) => {
+  if (scheduledActivities.length === 0) {
     return getStepTimesRange(START_TIME, END_TIME, duration);
   }
   let freeSpots = [];
-  let head = scheduled[0].start;
-  let tail = scheduled[scheduled.length - 1].end;
+  let head = scheduledActivities[0].startTime;
+  let tail = scheduledActivities[scheduledActivities.length - 1].endTime;
   if (isBefore(START_TIME, head)) {
     freeSpots.push(...getStepTimesRange(START_TIME, head, duration));
   }
 
-  for (let i = 1; i < scheduled.length; i++) {
-    let endTimePrev = scheduled[i - 1].end;
-    let startTimeCur = scheduled[i].start;
+  for (let i = 1; i < scheduledActivities.length; i++) {
+    let endTimePrev = scheduledActivities[i - 1].end;
+    let startTimeCur = scheduledActivities[i].start;
     freeSpots.push(...getStepTimesRange(endTimePrev, startTimeCur, duration));
   }
 
   if (isBefore(tail, END_TIME)) {
     freeSpots.push(...getStepTimesRange(tail, END_TIME, duration));
   }
-
+  // console.log('Free Spots', freeSpots);
   return freeSpots;
 };
 
@@ -69,8 +69,7 @@ function getStepTimesRange(startTimeIn, endTimeIn, duration) {
         endTimeIn
       )
     ) {
-      //   console.log('Track', startTime.format('HH:mm'), 'endTimeIn', endTimeIn);
-      tracks.push(startTime.toString());
+      tracks.push(startTime.format('HH:mm'));
     }
 
     startTime = new moment(startTime, 'HH:mm').add(duration, 'minutes');
