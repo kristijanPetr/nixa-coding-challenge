@@ -106,27 +106,6 @@ body {
   text-align: left;
 }
 
-.activity-history,
-.flex-center,
-.scheduled-activity {
-  display: -webkit-flex;
-  display: flex;
-  -webkit-flex-direction: column;
-  flex-direction: column;
-  width: 90%;
-}
-
-select {
-  position: relative;
-  display: block;
-  width: 100%;
-  height: 56px;
-  line-height: 3;
-  background: #fff;
-  overflow: hidden;
-  border-radius: 0.25em;
-}
-
 .scheduled-activity > .title {
   font-weight: bold;
   font-size: 18px;
@@ -269,6 +248,36 @@ select {
   padding: 2px;
 }
 
-.activity-logo img {
-  width: 30px;
+.activity-history,
+.flex-center,
+.scheduled-activity {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  /* width: 90%; */
+}
+
+@media screen and (device-aspect-ratio: 40/71) {
+  .activity-picker > .flex-center {
+    padding-right: 15px;
+  }
+  .activity-icon {
+    width: 50px;
+    height: 50px;
+  }
+  .pause-container {
+    margin-bottom: 30px !important;
+  }
+
+  .container-sch-activity > .flex-center {
+    margin-top: 20px !important;
+    margin-bottom: 20px !important;
+  }
+  .container-sch-activity > .activity-title {
+    margin-bottom: 25px !important;
+  }
+  .container-sch-activity > .flex-center > .select {
+    width: 18em;
+  }
 }

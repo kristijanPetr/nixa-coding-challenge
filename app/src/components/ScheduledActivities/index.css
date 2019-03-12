@@ -8,7 +8,7 @@
   background-color: #d97d54;
   height: 50px;
   max-width: 295px;
-  width: 295px;
+  /* width: 295px; */
   color: white;
   display: flex;
   cursor: pointer;
