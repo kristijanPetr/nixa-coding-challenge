@@ -2,26 +2,6 @@ const moment = require('moment');
 
 const START_TIME = '08:00';
 const END_TIME = '22:00';
-const DURATION = 30;
-
-const scheduled = [
-  {
-    start: '8:30',
-    end: '11:00'
-  },
-  {
-    start: '12:00',
-    end: '15:00'
-  },
-  {
-    start: '16:10',
-    end: '18:00'
-  },
-  {
-    start: '20:00',
-    end: '22:00'
-  }
-];
 
 function isBefore(start, end) {
   let startTime = new moment(start, 'HH:mm');
