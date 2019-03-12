@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import moment from 'moment';
+import _ from 'lodash';
 import PropTypes from 'prop-types';
 
 class ActivityTrack extends Component {
   _renderHistoryCircles = () => {
-    const { items = [] } = this.props;
+    let { items = [] } = this.props;
+    items = _.sortBy(items, 'startTime');
     const track = items.length > 7 ? items : [0, 0, 0, 0, 0, 0, 0];
 
     return track.map((indice, index) => {

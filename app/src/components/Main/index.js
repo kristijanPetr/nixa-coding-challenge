@@ -50,7 +50,10 @@ class Main extends Component {
     this.props.getHistoryActivities();
     let dates = get7DaysRange();
 
-    this.props.getScheduledActivitiesForDate(dates[0], dates[dates.length - 1]);
+    this.props.getScheduledActivitiesForDate(
+      dates[0].timestamp,
+      dates[dates.length - 1].timestamp
+    );
   }
 
   _selectActivity = activity => {
@@ -80,7 +83,14 @@ class Main extends Component {
       <div className="container">
         <Header />
         <div className="body">
-          <div className="title">Track Your Activity</div>
+          <div
+            className="title"
+            style={{
+              paddingLeft: '20px'
+            }}
+          >
+            Track Your Activity
+          </div>
           <div
             style={{
               width: '100%'

@@ -164,13 +164,44 @@
       "trackedTime": "0:3",
       "timestamp": 1552341765562,
       "id": 15
+    },
+    {
+      "name": "Surfing",
+      "desc": "OCEAN BEACH",
+      "bgImg": "/static/media/surfing@2x.ed502d78.png",
+      "logo": "/static/media/icn_surfing.8f01c192.svg",
+      "date": "03/12/2019",
+      "time": "10:17",
+      "trackedTime": "1:25",
+      "timestamp": 1552382326447,
+      "id": 16
+    },
+    {
+      "name": "Weights",
+      "desc": "HEAVY WEIGHTS",
+      "bgImg": "/static/media/weights@2x.b5299319.png",
+      "logo": "/static/media/icn_weights.c2141e59.svg",
+      "date": "03/12/2019",
+      "time": "14:58",
+      "trackedTime": "0:3",
+      "timestamp": 1552399123634,
+      "id": 17
+    },
+    {
+      "name": "Weights",
+      "desc": "HEAVY WEIGHTS",
+      "bgImg": "/static/media/weights@2x.b5299319.png",
+      "logo": "/static/media/icn_weights.c2141e59.svg",
+      "date": "03/12/2019",
+      "time": "14:59",
+      "trackedTime": "0:3",
+      "timestamp": 1552399147070,
+      "id": 18
     }
   ],
   "scheduled": [
     {
       "name": "Hiking",
-      "desc": "TORREY PINES",
-      "bgImg": "/static/media/hiking@2x.cc9e518b.png",
       "logo": "/static/media/icn_hiking.fa259032.svg",
       "date": "03/13/2019",
       "startTime": "17:11",
@@ -179,15 +210,49 @@
       "id": 1
     },
     {
-      "name": "Hiking",
-      "desc": "TORREY PINES",
-      "bgImg": "/static/media/hiking@2x.cc9e518b.png",
-      "logo": "/static/media/icn_hiking.fa259032.svg",
-      "date": "03/14/2019",
-      "startTime": "20:01",
-      "endTime": "20:31",
-      "timestamp": 1552590119000,
+      "name": "Weights",
+      "logo": "/static/media/icn_weights.c2141e59.svg",
+      "date": "03/13/2019",
+      "startTime": "08:45",
+      "endTime": "09:30",
+      "timestamp": 1552431600000,
       "id": 2
+    },
+    {
+      "name": "Spinning",
+      "logo": "/static/media/icn_spin.0ff7c39a.svg",
+      "date": "03/13/2019",
+      "startTime": "09:30",
+      "endTime": "11:00",
+      "timestamp": 1552431600000,
+      "id": 3
+    },
+    {
+      "name": "Weights",
+      "logo": "/static/media/icn_weights.c2141e59.svg",
+      "date": "03/13/2019",
+      "startTime": "17:41",
+      "endTime": "19:11",
+      "timestamp": 1552431600000,
+      "id": 4
+    },
+    {
+      "name": "Spinning",
+      "logo": "/static/media/icn_spin.0ff7c39a.svg",
+      "date": "03/13/2019",
+      "startTime": "13:00",
+      "endTime": "15:00",
+      "timestamp": 1552431600000,
+      "id": 5
+    },
+    {
+      "name": "Hiking",
+      "logo": "/static/media/icn_hiking.fa259032.svg",
+      "date": "03/19/2019",
+      "startTime": "20:00",
+      "endTime": "21:30",
+      "timestamp": 1552950000000,
+      "id": 6
     }
   ],
   "profile": {

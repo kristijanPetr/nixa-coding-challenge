@@ -1,4 +1,4 @@
-.container-activity {
+/* .container-activity {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -17,6 +17,19 @@
   min-height: 100vh;
   color: #fff;
   position: relative;
+} */
+
+.container-activity {
+  display: flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  -webkit-justify-content: flex-start;
+  justify-content: flex-start;
+  z-index: 2;
+  min-height: 100vh;
+  color: #fff;
+  position: relative;
+  align-items: center;
 }
 
 .header-activity {

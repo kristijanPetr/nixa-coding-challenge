@@ -42,8 +42,8 @@ export const findFreeSpots = (scheduledActivities, duration) => {
   }
 
   for (let i = 1; i < scheduledActivities.length; i++) {
-    let endTimePrev = scheduledActivities[i - 1].end;
-    let startTimeCur = scheduledActivities[i].start;
+    let endTimePrev = scheduledActivities[i - 1].endTime;
+    let startTimeCur = scheduledActivities[i].startTime;
     freeSpots.push(...getStepTimesRange(endTimePrev, startTimeCur, duration));
   }
 
@@ -82,21 +82,27 @@ export const get7DaysRange = () => {
   let currDate = moment();
   for (let i = 1; i <= 7; i++) {
     if (i === 1) {
-      dates.push(
-        new moment(currDate)
-          .add(i, 'days')
-          .set({ hour: 0, minute: 0, second: 0, millisecond: 0 })
-          .unix() * 1000
-      );
+      let date = new moment(currDate)
+        .add(i, 'days')
+        .set({ hour: 0, minute: 0, second: 0, millisecond: 0 });
+      dates.push({
+        timestamp: date.unix() * 1000,
+        date: date.format('MM/DD/YYYY')
+      });
     } else if (i === 7) {
-      dates.push(
-        new moment(currDate)
-          .add(i, 'days')
-          .set({ hour: 23, minute: 59, second: 59, millisecond: 0 })
-          .unix() * 1000
-      );
+      let date = new moment(currDate)
+        .add(i, 'days')
+        .set({ hour: 23, minute: 59, second: 59, millisecond: 0 });
+      dates.push({
+        timestamp: date.unix() * 1000,
+        date: date.format('MM/DD/YYYY')
+      });
     } else {
-      dates.push(new moment(currDate).add(i, 'days').unix() * 1000);
+      let date = new moment(currDate).add(i, 'days');
+      dates.push({
+        timestamp: date.unix() * 1000,
+        date: date.format('MM/DD/YYYY')
+      });
     }
   }
   console.log(dates);

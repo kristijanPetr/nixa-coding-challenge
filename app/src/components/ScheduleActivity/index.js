@@ -45,7 +45,8 @@ class ScheduleActivity extends Component {
     this.state = {
       timeActivityValue: 15,
       dateActivityValue: false,
-      activityPicked: false
+      activityPicked: false,
+      dateRange: []
     };
 
     this.refTimePicker = false;
@@ -60,7 +61,14 @@ class ScheduleActivity extends Component {
   componentDidMount() {
     let dates = get7DaysRange();
 
-    this.props.getScheduledActivitiesForDate(dates[0], dates[dates.length - 1]);
+    this.props.getScheduledActivitiesForDate(
+      dates[0].timestamp,
+      dates[dates.length - 1].timestamp
+    );
+
+    this.setState({
+      dateRange: dates.map(item => item.date)
+    });
   }
 
   _goBack = () => {
@@ -74,6 +82,7 @@ class ScheduleActivity extends Component {
   };
 
   _onChangeDateActivity = value => {
+    console.log('change picker val', moment(value).format('MM/DD'));
     this.setState({
       dateActivityValue: value
     });
@@ -125,23 +134,54 @@ class ScheduleActivity extends Component {
   _renderTimeSlots = () => {
     let allSpots = [];
     let dateGrouped = _.groupBy(this.props.scheduledActivities, 'date');
-    Object.keys(dateGrouped).map(key => {
-      let spots = findFreeSpots(dateGrouped[key], this.state.timeActivityValue);
+    let keys = [...this.state.dateRange];
+
+    keys.map(key => {
+      let spots = findFreeSpots(
+        _.sortBy(dateGrouped[key], 'timestamp') || [],
+        this.state.timeActivityValue
+      );
       // console.log('Spots', spots);
-      console.log(moment(key).format('ddd DD MMM'));
+      // console.log(moment(key).format('ddd DD MMM'));
 
       spots.map(spot => {
         allSpots.push(`${moment(key).format('ddd DD MMM')} ${spot}`);
       });
     });
-    console.log('All spots', allSpots);
+    // console.log('All spots', allSpots);
     return allSpots.map((item, index) => {
       return (
-        <option key={index} value="1">
+        <option key={index} value={item}>
           {item}
         </option>
       );
     });
+  };
+
+  _onSubmitForm = () => {
+    console.log('data to submit', this.state);
+    const {
+      activityPicked: { name, logo },
+      dateActivityValue,
+      timeActivityValue
+    } = this.state;
+    let date =
+      moment(dateActivityValue).format('MM/DD/') + moment().format('YYYY');
+
+    let formData = {
+      name,
+      logo,
+      date,
+      startTime: moment(dateActivityValue).format('HH:mm'),
+      endTime: moment(dateActivityValue)
+        .add(timeActivityValue, 'minutes')
+        .format('HH:mm'),
+      timestamp: moment(date).unix() * 1000
+    };
+    console.log('formData', formData);
+    this.props.addScheduledActivity(formData);
+
+    this._goBack();
   };
 
   render() {
@@ -211,6 +251,7 @@ class ScheduleActivity extends Component {
             if (!this._isButtonEnabled()) {
               return;
             }
+            this._onSubmitForm();
           }}
         >
           <div className="activity-btn">SCHEDULE</div>

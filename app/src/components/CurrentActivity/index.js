@@ -31,10 +31,9 @@ class CurrentActivity extends Component {
   momentCounter = () => {
     let endTime = new moment();
     let duration = moment.duration(endTime.diff(this.state.startTime));
+
     this.setState({
-      time: `${duration.asMinutes().toFixed(0)}:${duration
-        .asSeconds()
-        .toFixed(0)}`
+      time: `${duration.minutes().toFixed(0)}:${duration.seconds().toFixed(0)}`
     });
   };
 
